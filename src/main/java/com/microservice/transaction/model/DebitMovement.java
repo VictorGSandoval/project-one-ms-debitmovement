@@ -11,16 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
-public class Transaction {
-	
-	
+public class DebitMovement {
+
 	@Id
 	private String id;
 	private double amount;
-	private String type;
-	private String dateTransaction;
-	private String statusTransaction;
-	private int idAccount;
+	private String date;
+	private String description;
+	private int idAccountCustomer;
+	private int idAccountDestination;
 	
 
 }

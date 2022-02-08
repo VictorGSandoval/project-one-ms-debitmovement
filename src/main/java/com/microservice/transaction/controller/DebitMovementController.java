@@ -1,7 +1,8 @@
 package com.microservice.transaction.controller;
 
 
-import com.microservice.transaction.model.Transaction;
+import com.microservice.transaction.model.DebitMovement;
+import com.microservice.transaction.service.DebitMovementService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,43 +22,43 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/transaction")
-public class TransactionController {
+@RequestMapping("/DebitMovement")
+public class DebitMovementController {
 	
-private final com.microservice.transaction.service.TransactionService transactionService;
+private final DebitMovementService debitMovementService;
 	
-	@GetMapping(path = "/list")
-	public Mono<ResponseEntity<Flux<Transaction>>>getAllAccount() {
-		Flux<Transaction> list=this.transactionService.getAllTransaction();
+	@GetMapping
+	public Mono<ResponseEntity<Flux<DebitMovement>>>getAllDebitMovement() {
+		Flux<DebitMovement> list=this.debitMovementService.getAllDebitMovement();
 		return  Mono.just(ResponseEntity.ok()
 				.contentType(MediaType.APPLICATION_JSON)
 				.body(list));
 	}
 
-	@GetMapping("/details/{id}")
-	public Mono<ResponseEntity<Transaction>> getAccountById(@PathVariable String id){
-		var account=this.transactionService.getTransactionById(id);
-		return account.map(ResponseEntity::ok)
+	@GetMapping("/{id}")
+	public Mono<ResponseEntity<DebitMovement>> getDebitMovementById(@PathVariable String id){
+		var debitMovement=this.debitMovementService.getDebitMovementById(id);
+		return debitMovement.map(ResponseEntity::ok)
 				.defaultIfEmpty(ResponseEntity.notFound().build());
 	}
 
-	@PostMapping(path = "/create")
+	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Mono<Transaction> create(@RequestBody Transaction account){
-		return this.transactionService.createTransaction(account);
+	public Mono<DebitMovement> create(@RequestBody DebitMovement debitMovement){
+		return this.debitMovementService.createDebitMovement(debitMovement);
 	}
 
-	@PutMapping("update/{id}")
-	public Mono<ResponseEntity<Transaction>> updateAccountById(@PathVariable String id, @RequestBody Transaction transaction){
+	@PutMapping("/{id}")
+	public Mono<ResponseEntity<DebitMovement>> updateDebitMovementById(@PathVariable String id, @RequestBody DebitMovement debitMovement){
 
-		return this.transactionService.updateTransaction(id,transaction)
+		return this.debitMovementService.updateDebitMovement(id,debitMovement)
 				.map(ResponseEntity::ok)
 				.defaultIfEmpty(ResponseEntity.badRequest().build());
 	}
 
-	@DeleteMapping("delete/{id}")
-	public Mono<ResponseEntity<Void>> deleteAccountById(@PathVariable String id){
-		return this.transactionService.deleteTransaction(id)
+	@DeleteMapping("/{id}")
+	public Mono<ResponseEntity<Void>> deleteDebitMovementById(@PathVariable String id){
+		return this.debitMovementService.deleteDebitMovement(id)
 				.map(r -> ResponseEntity.ok().<Void>build())
 				.defaultIfEmpty(ResponseEntity.notFound().build());
 	}
