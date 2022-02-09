@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "b2fe03c9-cbe0-4685-8513-c523a9e430ff",
+		"name": "MS DEBIT_MOVEMENT | Bootcamp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar Todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/DebitMovement",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"DebitMovement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\": \"4\",\r\n\"amount\": 15.0,\r\n\"idAccountCustomer\": 217777,\r\n\"idAccountDestination\": 217778,\r\n\"date\": \"02/04/2022\",\r\n\"description\": \"Pago Supermarket Tottus\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/DebitMovement",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"DebitMovement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bucar por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/DebitMovement/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"DebitMovement",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"amount\": 666.0,\r\n\"idAccountCustomer\": 217777,\r\n\"idAccountDestination\": 217778,\r\n\"date\": \"02/04/2022\",\r\n\"description\": \"Pago Supermarket PlazaVea\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/DebitMovement/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"DebitMovement",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar por ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/DebitMovement/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"DebitMovement",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
